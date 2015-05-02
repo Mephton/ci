@@ -11,6 +11,31 @@ namespace Neural_Network
         protected double theta = 0.0;
         protected double bias = 0;
 
+
+		private double sumUp() {
+			if(incomingSynapses.Count != weights.Count) {
+				throw new Exception("amount of synapses do not match amount of weights");
+			}
+
+			double sum = 0.0;
+			for (int i = 0; i < weights.Count; ++i) {
+				sum += incomingSynapses[i].voltage * weights[i];
+			}
+
+			return sum;
+		}
+
+		public override void calc() {
+			double sum = sumUp();
+			currentOutputVoltage = (1.0 / (1 - Math.Pow(Math.E, -sum)));
+			foreach (Synapse s in outgoingSynapses) {
+				s.voltage = currentOutputVoltage;
+			}
+
+		}
+
+
+
         public override void learn(TrainingInstance t)
         {
             double phi = 0.0;
@@ -39,5 +64,18 @@ namespace Neural_Network
 
             return sb.ToString();
         }
+
+		public override void addIncomingSynapse(Synapse s) {
+			incomingSynapses.Add(s);
+			weights.Add(defaultWeight);
+		}
+		public override void addIncomingSynapse(Synapse s, double initWeight) {
+			incomingSynapses.Add(s);
+			weights.Add(initWeight);
+		}
+
+		public override void sethard(double v) {
+			throw new NotImplementedException();
+		}
     }
 }

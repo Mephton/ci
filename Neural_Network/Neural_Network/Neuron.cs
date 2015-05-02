@@ -21,11 +21,26 @@ namespace Neural_Network
         {
 
         }
-    
-        public void addIncomingSynapse(Synapse s)
-        {
-            incomingSynapses.Add(s);
-            weights.Add(defaultWeight);
-        }
+
+		protected double currentOutputVoltage;
+		public double getCurrentOutputValue() {
+			return currentOutputVoltage;
+		}
+
+		public abstract void calc();
+		public abstract void sethard(double v);
+
+		public abstract void addIncomingSynapse(Synapse s);
+		public abstract void addIncomingSynapse(Synapse s, double weight);
+		public void addOutgoingSynapse(Synapse s) {
+			outgoingSynapses.Add(s);
+		}
+
+
+		private static Random rand = new Random();
+		public static double randomInitWeightGenerator(double min, double max) {
+			return rand.NextDouble() * (max - min) + min;
+		}
+
     }
 }

@@ -41,8 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BiasNeuron.cs" />
     <Compile Include="Cell.cs" />
+    <Compile Include="Layer.cs" />
     <Compile Include="Neuron.cs" />
+    <Compile Include="Perceptron.cs" />
+    <Compile Include="PerceptronInputCell.cs" />
     <Compile Include="PerzeptronCell.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
