@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Neural_Network
 {
-    class Program
+    class Vector
     {
-        static void Main(string[] args)
+        List<double> _values = new List<double>();
+        public Vector(double v)
         {
-            Trainer trainer = new Trainer();
-            trainer.trainPerceptron();
+            _values.Add(v);
         }
+
+
     }
 }
