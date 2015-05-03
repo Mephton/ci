@@ -27,7 +27,7 @@ namespace Neural_Network
 
 		public override void calc() {
 			double sum = sumUp();
-			currentOutputVoltage = (1.0 / (1 - Math.Pow(Math.E, -sum)));
+			currentOutputVoltage = (1.0 / (1 + Math.Pow(Math.E, -sum)));
 			foreach (Synapse s in outgoingSynapses) {
 				s.voltage = currentOutputVoltage;
 			}

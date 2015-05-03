@@ -31,9 +31,19 @@ namespace Neural_Network {
 
 
 		private void connectFully() {
-			for (int i = 0; i < hiddenLayers.Count; ++i) {
-				Layer current = i < hiddenLayers.Count-1 ? hiddenLayers[i] : inputLayer;
-				Layer next = i < hiddenLayers.Count - 1 ? hiddenLayers[i + 1] : hiddenLayers[0];
+			for (int i = 0; i < hiddenLayers.Count+1; ++i) {
+				Layer current;
+                if (i < hiddenLayers.Count)
+                    current = hiddenLayers[i];
+                else
+                    current = inputLayer;
+				Layer next;
+                if(i < hiddenLayers.Count - 1)
+                    next=hiddenLayers[i + 1];
+                else if(i==hiddenLayers.Count-1)
+                    next=outputLayer;
+                else
+                    next=hiddenLayers[0];
 				foreach (Neuron from in current.neurons) {
 					foreach (Neuron to in next.neurons) {
 						if (to.GetType() == typeof(BiasNeuron)) {
@@ -46,6 +56,37 @@ namespace Neural_Network {
 				}
 			}
 		}
+
+        public List<double> feedForward(TrainingInstance tr)
+        {
+            if (tr.inputVector.Count != inputLayer.neurons.Count)
+            {
+                throw new Exception("input vector size does not match input layer neuron count");
+            }
+
+
+            for (int i = 0; i < tr.inputVector.Count; ++i)
+            {
+                inputLayer.neurons[i].sethard(tr.inputVector[i]);
+            }
+            for (int i = 0; i < hiddenLayers.Count; ++i)
+            {
+                for (int j = 0; j < hiddenLayers[i].neurons.Count; ++j)
+                {
+                    hiddenLayers[i].neurons[j].calc();
+                }
+            }
+
+            List<double> results = new List<double>();
+
+            for (int j = 0; j < outputLayer.neurons.Count; ++j)
+            {
+                outputLayer.neurons[j].calc();
+                results.Add(outputLayer.neurons[j].getCurrentOutputValue());
+            }
+
+            return results;
+        }
 
 
 		public string outputLayerToString() {

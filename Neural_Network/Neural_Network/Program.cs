@@ -10,8 +10,11 @@ namespace Neural_Network
     {
         static void Main(string[] args)
         {
-            Trainer trainer = new Trainer();
-            trainer.trainPerceptron();
+            Visualizer vs = new Visualizer();
+
+
+
+            vs.ShowDialog();
         }
     }
 }
