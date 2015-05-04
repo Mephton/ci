@@ -9,7 +9,7 @@ namespace Neural_Network {
 
 
 		public Layer inputLayer;
-		private Layer outputLayer;
+		public Layer outputLayer;
 		private List<Layer> hiddenLayers;
 		private double initWeightMin;
 		private double initWeightMax;
@@ -59,15 +59,15 @@ namespace Neural_Network {
 
         public List<double> feedForward(TrainingInstance tr)
         {
-            if (tr.inputVector.Count != inputLayer.neurons.Count)
+            if (tr.inputVector.Count != inputLayer.neurons.Count-1) //-1 due to bias neuron
             {
                 throw new Exception("input vector size does not match input layer neuron count");
             }
 
 
-            for (int i = 0; i < tr.inputVector.Count; ++i)
+            for (int i = 1; i < inputLayer.neurons.Count; ++i)
             {
-                inputLayer.neurons[i].sethard(tr.inputVector[i]);
+                inputLayer.neurons[i].sethard(tr.inputVector[i-1]);
             }
             for (int i = 0; i < hiddenLayers.Count; ++i)
             {

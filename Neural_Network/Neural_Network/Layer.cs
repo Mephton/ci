@@ -26,6 +26,7 @@ namespace Neural_Network {
 			: base(capacity) {
 		}
 		protected override void construct(int capacity) {
+            neurons.Add(new BiasNeuron());
 			for (int i = 0; i < capacity; ++i) {
 				neurons.Add(new PerceptronInputCell());
 			}

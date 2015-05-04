@@ -43,7 +43,16 @@ namespace Neural_Network
         }
 
 
-
+        
+        public void trainOutputLayer()
+        {
+            foreach(TrainingInstance ti in training){
+                foreach (Neuron n in perceptron.outputLayer.neurons)
+                {
+                    n.learn(ti);
+                }
+            }
+        }
 
 
         public void trainPerceptron()

@@ -25,9 +25,20 @@ namespace Neural_Network
 			return sum;
 		}
 
+        private double activate(double sum)
+        {
+            return (6.0 / (1 + Math.Pow(Math.E, -sum)) - 3);
+        }
+
+        private double activateDiff(double sum)
+        {
+            double a=activate(sum);
+            return (a * (1.0 - a / 6.0));
+        }
+
 		public override void calc() {
 			double sum = sumUp();
-			currentOutputVoltage = (1.0 / (1 + Math.Pow(Math.E, -sum)));
+			currentOutputVoltage = activate(sum);
 			foreach (Synapse s in outgoingSynapses) {
 				s.voltage = currentOutputVoltage;
 			}
@@ -35,24 +46,37 @@ namespace Neural_Network
 		}
 
 
+        double deltaOut = 0.0; //export to outputCell
 
         public override void learn(TrainingInstance t)
-        {
-            double phi = 0.0;
-            for (int i = 0; i < incomingSynapses.Count(); ++i)
-            {
-                phi += weights[i] * t.inputVector[i];
-            }
-            phi += bias;
+        { //currently only output layer
+            double sum = sumUp();
+            calc();
 
-            double output = phi > theta ? 1.0 : 0.0;
-
-            for (int i = 0; i < weights.Count(); ++i)
+            foreach (Synapse s in incomingSynapses)
             {
-                weights[i]=weights[i]+learningRate*(t.expectedOutput-output)*t.inputVector[i];
-                //bias = bias+learningRate*(t.expectedOutput-output)
+
             }
 
+            for (int j = 0; j < weights.Count; ++j)
+            {
+                weights[j] += -learningRate * currentOutputVoltage * activateDiff(sum) * (currentOutputVoltage - t.expectedOutput);
+                incomingSynapses[j].weight = weights[j];
+            }
+
+        }
+
+        public void learnHidden(TrainingInstance t)
+        {//make sure synapses weight has been set....
+            double sum = sumUp();
+            calc();
+            double sumout = 0.0;
+            foreach ()
+            for (int j = 0; j < weights.Count; ++j)
+            {
+                weights[j] += -learningRate * currentOutputVoltage * activateDiff(sum) * (currentOutputVoltage - t.expectedOutput);
+                incomingSynapses[j].weight = weights[j];
+            }
         }
 
         public string ToString()
