@@ -10,7 +10,7 @@ namespace Neural_Network {
 
 		public Layer inputLayer;
 		public Layer outputLayer;
-		private List<Layer> hiddenLayers;
+		public List<Layer> hiddenLayers;
 		private double initWeightMin;
 		private double initWeightMax;
 
@@ -67,7 +67,7 @@ namespace Neural_Network {
 
             for (int i = 1; i < inputLayer.neurons.Count; ++i)
             {
-                inputLayer.neurons[i].sethard(tr.inputVector[i-1]);
+                inputLayer.neurons[i].setStaticOutput(tr.inputVector[i-1]);
             }
             for (int i = 0; i < hiddenLayers.Count; ++i)
             {

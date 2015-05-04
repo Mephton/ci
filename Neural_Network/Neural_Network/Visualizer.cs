@@ -58,7 +58,7 @@ namespace Neural_Network
                     );
             }
 
-            trainer.trainPerceptron();
+            //trainer.trainPerceptron();
 
         }
 
@@ -70,11 +70,14 @@ namespace Neural_Network
             int w = pictureBox1.Width;
             int h = pictureBox1.Height;
             
-            Pen p = new Pen(Color.Red, 0.05F);
+            Pen p = new Pen(Color.Red, 0.001F);
             Pen p2 = new Pen(Color.Black, 0.05F);
 
             g1.TranslateTransform(pictureBox1.Width / 2, pictureBox1.Height / 2);
             g1.ScaleTransform(pictureBox1.Width / 20.0F, -pictureBox1.Height / 6.0F);
+
+			g1.FillRectangle(new SolidBrush(Color.Green), 7, 2f, 0.1f, 0.1f);
+			g1.FillRectangle(new SolidBrush(Color.Green), -7, -2f, 0.1f, 0.1f);
 
             g1.DrawLine(p2, -10f, 0f, 10f, 0f);
             g1.DrawLine(p2, 0f, -3f, 0f, 3f);
@@ -89,11 +92,19 @@ namespace Neural_Network
                     Convert.ToSingle(tr[i+1][0])
                     );
             }
+
+			toolStripStatusLabel1.Text = trainer.meanSquareError().ToString();
         }
 
         private void trainOutputLayerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             trainer.trainOutputLayer();
+			showNetworkOutputToolStripMenuItem_Click(sender, e);
         }
+
+		private void trainHiddenLayer0ToolStripMenuItem_Click(object sender, EventArgs e) {
+			trainer.trainHiddenLayer();
+			showNetworkOutputToolStripMenuItem_Click(sender, e);
+		}
     }
 }

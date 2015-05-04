@@ -46,17 +46,86 @@ namespace Neural_Network
         
         public void trainOutputLayer()
         {
+			TrainingInstance t1 = new TrainingInstance(new List<double>() { 7 }, 2);
+			TrainingInstance t2 = new TrainingInstance(new List<double>() { -7 }, -2);
+
+			perceptron.feedForward(t1);
+			foreach (Neuron n in perceptron.outputLayer.neurons) {
+				n.learn(t1);
+			}
+			perceptron.feedForward(t2);
+			foreach (Neuron n in perceptron.outputLayer.neurons) {
+				n.learn(t2);
+			}
+
+			return;
+			
+
+
             foreach(TrainingInstance ti in training){
+				perceptron.feedForward(ti);
                 foreach (Neuron n in perceptron.outputLayer.neurons)
                 {
                     n.learn(ti);
                 }
+				//break;
             }
         }
 
 
+		public void trainHiddenLayer() {
+
+
+			TrainingInstance t1 = new TrainingInstance(new List<double>() { 7 }, 2);
+			perceptron.feedForward(t1);
+			foreach (Neuron o in perceptron.outputLayer.neurons) { //in case of MLP not always output layer!
+				o.setDelta(t1);
+			}
+			for (int i = 1; i < perceptron.hiddenLayers[0].neurons.Count; ++i) {//in case of MLP not always  layer 0!
+				perceptron.hiddenLayers[0].neurons[i].learn(t1);
+			}
+
+
+			TrainingInstance t2 = new TrainingInstance(new List<double>() { -7 }, 0);
+			perceptron.feedForward(t2);
+			foreach (Neuron o in perceptron.outputLayer.neurons) { //in case of MLP not always output layer!
+				o.setDelta(t2);
+			}
+			for (int i = 1; i < perceptron.hiddenLayers[0].neurons.Count; ++i) {//in case of MLP not always  layer 0!
+				perceptron.hiddenLayers[0].neurons[i].learn(t2);
+			}
+
+			return;
+
+			foreach (TrainingInstance ti in training) {
+				perceptron.feedForward(ti);
+				for (int i = 1; i < perceptron.hiddenLayers[0].neurons.Count; ++i ) {
+					((PerzeptronHiddenCell)perceptron.hiddenLayers[0].neurons[i]).learn(ti);
+				}
+				//break;
+			}
+		}
+
+
+		public double meanSquareError() {
+
+			double d=0.0;
+			
+			foreach (TrainingInstance ti in training) {
+				perceptron.feedForward(ti);
+
+				d+=Math.Pow(perceptron.outputLayer.neurons[0].getCurrentOutputValue()-ti.expectedOutput, 2.0);
+			}
+
+			d /= training.Count;
+			return d;
+		}
+
         public void trainPerceptron()
         {
+			throw new NotImplementedException();
+
+
             List<double> a = new List<double>();
             a.Add(-4.0);
             List<double> b = new List<double>();
@@ -75,7 +144,7 @@ namespace Neural_Network
             training.Add(new TrainingInstance(d, 1));
             training.Add(new TrainingInstance(e, 1));
 
-            PerzeptronCell perzeptron = new PerzeptronCell();
+            PerzeptronHiddenCell perzeptron = new PerzeptronHiddenCell();
             //perzeptron.addIncomingSynapse(new Synapse());
 
             for (int runs = 0; runs < 10; ++runs)

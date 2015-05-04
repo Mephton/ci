@@ -22,7 +22,7 @@ namespace Neural_Network {
 			}
 			currentOutputVoltage = 1;
 		}
-		public override void sethard(double v) {
+		public override void setStaticOutput(double v) {
 			throw new NotImplementedException();
 		}
 	}
