@@ -32,5 +32,17 @@ namespace Neural_Network
             }
             return sb.ToString();
         }
+
+
+        protected override double activate(double sum)
+        {
+            return 1 / (1 + Math.Pow(Math.E, -sum));
+        }
+
+        protected override double activateDifferentiated(double sum)
+        {
+            double a = activate(sum);
+            return a*(1.0-a);
+        }
     }
 }

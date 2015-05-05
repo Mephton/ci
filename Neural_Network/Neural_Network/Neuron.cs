@@ -60,13 +60,13 @@ namespace Neural_Network
 			return sum;
 		}
 
-		protected double activate(double sum) {
+		protected virtual double activate(double sum) {
 			//return -3.50 + 7.0 / (1.0 + Math.Pow(Math.E, -0.3 * sum));
 			return -3.0 + 6.0 / (1.0 + Math.Pow(Math.E, -0.2 * sum));
 			//return (6.0 / (1 + Math.Pow(Math.E, -sum)) - 3);
 		}
 
-		protected double activateDifferentiated(double sum) {
+		protected virtual double activateDifferentiated(double sum) {
 			//return 2.1 * Math.Pow(Math.E, -0.3 * sum) / Math.Pow(1.0 + Math.Pow(Math.E, -0.3 * sum), 2.0);
 			return 3.0 * Math.Pow(Math.E, -0.2 * sum) / Math.Pow(1.0 + Math.Pow(Math.E, -0.2 * sum), 2.0);
 			//return 6.0 * Math.Pow(Math.E, -sum) / Math.Pow(1 + Math.Pow(Math.E, -sum), 2.0);

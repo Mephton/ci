@@ -46,21 +46,34 @@ namespace Neural_Network
         
         public void trainOutputLayer()
         {
-			TrainingInstance t1 = new TrainingInstance(new List<double>() { 7 }, 2);
-			TrainingInstance t2 = new TrainingInstance(new List<double>() { -7 }, -2);
+            TrainingInstance t1 = new TrainingInstance(new List<double>() { 7 }, -2);
+            //TrainingInstance t2 = new TrainingInstance(new List<double>() { -7 }, 2);
 
-			perceptron.feedForward(t1);
-			foreach (Neuron n in perceptron.outputLayer.neurons) {
-				n.learn(t1);
-			}
-			perceptron.feedForward(t2);
-			foreach (Neuron n in perceptron.outputLayer.neurons) {
-				n.learn(t2);
-			}
+            perceptron.feedForward(t1);
+            foreach (Neuron n in perceptron.outputLayer.neurons)
+            {
+                n.learn(t1);
+            }
+            //perceptron.feedForward(t2);
+            //foreach (Neuron n in perceptron.outputLayer.neurons)
+            //{
+            //    n.learn(t2);
+            //}
 
-			return;
-			
+            return;
 
+
+
+            TrainingInstance tr = training[r.Next(training.Count)];
+            
+            perceptron.feedForward(tr);
+            foreach (Neuron n in perceptron.outputLayer.neurons)
+            {
+                n.learn(tr);
+            }
+
+
+            return;
 
             foreach(TrainingInstance ti in training){
 				perceptron.feedForward(ti);
@@ -71,6 +84,10 @@ namespace Neural_Network
 				//break;
             }
         }
+        private int counter=0;
+
+
+        Random r = new Random();
 
 
 		public void trainHiddenLayer() {
