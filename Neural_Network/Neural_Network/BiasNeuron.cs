@@ -16,6 +16,11 @@ namespace Neural_Network {
 			throw new Exception("Bias Neuron cannot have incoming synapses");
 		}
 
+		public override void addOutgoingSynapse(Synapse s) {
+			base.addOutgoingSynapse(s);
+			s.voltage = 1;
+		}
+
 		public override void calc() {
 			foreach (Synapse s in outgoingSynapses) {
 				s.voltage = 1;

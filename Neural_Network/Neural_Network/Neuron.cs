@@ -38,7 +38,7 @@ namespace Neural_Network
 		}
 		public virtual void addIncomingSynapse(Synapse s, double initWeight) {
 			incomingSynapses.Add(s);
-			s.weight = defaultWeight;
+			s.weight = initWeight;
 		}
 
 		public virtual void addOutgoingSynapse(Synapse s) {
