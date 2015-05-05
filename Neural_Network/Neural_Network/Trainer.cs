@@ -19,7 +19,7 @@ namespace Neural_Network
 		}
 
 		private double f(double x) {
-			return Math.Cos(x);
+			//return Math.Cos(x);
 			return (Math.Cos(x / 3) + Math.Sin(10 / (Math.Abs(x) + 0.1)) + 0.1 * x); 
 		}
 
@@ -78,7 +78,9 @@ namespace Neural_Network
 			var permed = training.OrderBy(item => r.Next());
 
 			foreach (TrainingInstance ti in permed) {
+			//	TrainingInstance ti = new TrainingInstance(new List<double>() { -1 }, 5);
 				perceptron.feedForward(ti);
+				
                 foreach (Neuron n in perceptron.outputLayer.neurons)
                 {
                     n.learn(ti);
@@ -124,6 +126,16 @@ namespace Neural_Network
 			//}
 
 			//return;
+
+
+
+
+			//TrainingInstance tj = new TrainingInstance(new List<double>() { -1 }, 5);
+			//for (int i = 1; i < perceptron.hiddenLayers[0].neurons.Count; ++i) {
+			//	perceptron.hiddenLayers[0].neurons[i].learn(tj);
+			//}
+
+
 
 			var permed = training.OrderBy(item => r.Next());
 

@@ -16,6 +16,7 @@ namespace Neural_Network {
 		}
 
 		public override void setDelta(TrainingInstance t) {
+			calc();
 			delta = activateDifferentiated(excitation()) * (currentOutputVoltage - t.expectedOutput);
 		}
 

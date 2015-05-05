@@ -38,7 +38,7 @@ namespace Neural_Network {
 		}
 		protected override void construct(int capacity) {
 			neurons.Add(new BiasNeuron());
-			for (int i = 1; i < capacity; ++i) {
+			for (int i = 0; i < capacity; ++i) {
 				neurons.Add(new PerzeptronHiddenCell());
 			}
 		}

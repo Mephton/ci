@@ -27,7 +27,7 @@ namespace Neural_Network
 
 		protected double currentOutputVoltage;
 		public double getCurrentOutputValue() {
-			return currentOutputVoltage;
+			return activate(excitation());
 		}
 
 		public virtual void setStaticOutput(double v){}

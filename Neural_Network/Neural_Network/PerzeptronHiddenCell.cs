@@ -20,6 +20,8 @@ namespace Neural_Network
 		public override void setDelta(TrainingInstance t) {
 			double sumout = 0.0;
 			foreach (Synapse s in outgoingSynapses) {
+				s.to.calc();
+				s.to.setDelta(t);
 				sumout += s.weight * s.to.delta;
 			}
 			delta = activateDifferentiated(excitation()) * sumout;
