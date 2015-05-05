@@ -62,6 +62,8 @@ namespace Neural_Network
 
         }
 
+		int outputCounter = 0;
+
         private void showNetworkOutputToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<List<double>> tr = trainer.trainingResults();
@@ -70,11 +72,13 @@ namespace Neural_Network
             int w = pictureBox1.Width;
             int h = pictureBox1.Height;
             
-            Pen p = new Pen(Color.Red, 0.001F);
+            Pen p = new Pen(Color.FromArgb((255-3*outputCounter)%255,(outputCounter)%255,(10*outputCounter++)%255), 0.001F);
             Pen p2 = new Pen(Color.Black, 0.05F);
 
             g1.TranslateTransform(pictureBox1.Width / 2, pictureBox1.Height / 2);
             g1.ScaleTransform(pictureBox1.Width / 20.0F, -pictureBox1.Height / 6.0F);
+
+			
 
             g1.FillRectangle(new SolidBrush(Color.Green), 7, -2f, 0.1f, 0.1f);
             g1.FillRectangle(new SolidBrush(Color.Green), -7, 2f, 0.1f, 0.1f);
