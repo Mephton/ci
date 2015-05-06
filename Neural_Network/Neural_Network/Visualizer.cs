@@ -42,7 +42,7 @@ namespace Neural_Network
             int w = pictureBox1.Width;
             int h = pictureBox1.Height;
 
-            Pen p = new Pen(Color.Red, 0.05F);
+            Pen p = new Pen(Color.Green, 0.01F);
 
             g1.TranslateTransform(pictureBox1.Width / 2, pictureBox1.Height / 2);
             g1.ScaleTransform(pictureBox1.Width / 20.0F, -pictureBox1.Height / 6.0F);
@@ -50,12 +50,13 @@ namespace Neural_Network
             //g1.FillRectangle(new SolidBrush(Color.Blue), 0, 0, 1, 1);
 
             for (int i = 0; i < trainer.training.Count-1; ++i) {
-                g1.DrawLine(p,
-                    Convert.ToSingle(trainer.training[i].inputVector[0]),
-                    Convert.ToSingle(trainer.training[i].expectedOutput),
-                    Convert.ToSingle(trainer.training[i + 1].inputVector[0]),
-                    Convert.ToSingle(trainer.training[i + 1].expectedOutput)
-                    );
+				g1.DrawLine(p,
+					Convert.ToSingle(trainer.training[i].inputVector[0]),
+					Convert.ToSingle(trainer.training[i].expectedOutput),
+					Convert.ToSingle(trainer.training[i + 1].inputVector[0]),
+					Convert.ToSingle(trainer.training[i + 1].expectedOutput)
+					);
+				//g1.DrawRectangle(p,Convert.ToSingle(trainer.training[i].inputVector[0]), Convert.ToSingle(trainer.training[i].expectedOutput), 0.001f, 0.001f);
             }
 
             //trainer.trainPerceptron();
@@ -72,7 +73,8 @@ namespace Neural_Network
             int w = pictureBox1.Width;
             int h = pictureBox1.Height;
             
-            Pen p = new Pen(Color.FromArgb((255-3*outputCounter)%255,(outputCounter)%255,(10*outputCounter++)%255), 0.001F);
+
+            Pen p = new Pen(Color.FromArgb((255*5-3*outputCounter)%255,(outputCounter)%255,(10*outputCounter++)%255), 0.001F);
             Pen p2 = new Pen(Color.Black, 0.05F);
 
             g1.TranslateTransform(pictureBox1.Width / 2, pictureBox1.Height / 2);

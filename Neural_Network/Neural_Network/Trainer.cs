@@ -11,7 +11,7 @@ namespace Neural_Network
 		Perceptron perceptron;
 
 		public Trainer() {
-			List<int> numberOfNeurons = new List<int>(new int[] {1,10,1});
+			List<int> numberOfNeurons = new List<int>(new int[] {1,100,1});
 			perceptron = new Perceptron(numberOfNeurons, -0.5, 0.5);
 
 			createTrainingSet();
@@ -159,7 +159,7 @@ namespace Neural_Network
 				d+=Math.Pow(perceptron.outputLayer.neurons[0].getCurrentOutputValue()-ti.expectedOutput, 2.0);
 			}
 
-			d /= training.Count;
+			d /= (2*training.Count);
 			return d;
 		}
 
