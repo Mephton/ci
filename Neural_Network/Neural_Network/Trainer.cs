@@ -79,25 +79,35 @@ namespace Neural_Network
 
 			foreach (TrainingInstance ti in permed) {
 			//	TrainingInstance ti = new TrainingInstance(new List<double>() { -1 }, 5);
-				perceptron.feedForward(ti);
-				
-                foreach (Neuron n in perceptron.outputLayer.neurons)
+                trainSingle(ti);
+                if (double.IsNaN(perceptron.outputLayer.neurons[0].getCurrentOutputValue()))
                 {
-                    n.learn(ti);
+                    throw new Exception("crap");
                 }
 				//break;
             }
         }
         private int counter=0;
 
+        private void trainSingle(TrainingInstance ti)
+        {
+            perceptron.feedForward(ti);
+
+            foreach (Neuron n in perceptron.outputLayer.neurons)
+            {
+                n.learn(ti);
+            }
+        }
+
 
         Random r = new Random();
 
 
-		public void trainHiddenLayer() {
+		public void trainHiddenLayer()
+        {
 
-
-			//TrainingInstance t1 = new TrainingInstance(new List<double>() { 7 }, 2);
+            #region debug stuff
+            //TrainingInstance t1 = new TrainingInstance(new List<double>() { 7 }, 2);
 			//perceptron.feedForward(t1);
 			//foreach (Neuron o in perceptron.outputLayer.neurons) { //in case of MLP not always output layer!
 			//	o.setDelta(t1);
@@ -133,14 +143,15 @@ namespace Neural_Network
 			//TrainingInstance tj = new TrainingInstance(new List<double>() { -1 }, 5);
 			//for (int i = 1; i < perceptron.hiddenLayers[0].neurons.Count; ++i) {
 			//	perceptron.hiddenLayers[0].neurons[i].learn(tj);
-			//}
+            //}
 
+            #endregion
 
-
-			var permed = training.OrderBy(item => r.Next());
+            var permed = training.OrderBy(item => r.Next());
 
 			foreach (TrainingInstance ti in permed) {
-				perceptron.feedForward(ti);
+				//perceptron.feedForward(ti);
+                trainSingle(ti);
 				for (int i = 1; i < perceptron.hiddenLayers[0].neurons.Count; ++i ) {
 					perceptron.hiddenLayers[0].neurons[i].learn(ti);
 				}
