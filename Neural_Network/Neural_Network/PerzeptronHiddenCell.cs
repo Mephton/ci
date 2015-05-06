@@ -13,7 +13,7 @@ namespace Neural_Network
 
 			foreach (Synapse s in incomingSynapses)
             {
-				s.weight = -learningRate * s.voltage * delta;
+				s.weight += -learningRate * s.voltage * delta;
             }
         }
 
