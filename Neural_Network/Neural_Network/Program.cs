@@ -11,9 +11,6 @@ namespace Neural_Network
         static void Main(string[] args)
         {
             Visualizer vs = new Visualizer();
-
-
-
             vs.ShowDialog();
         }
     }

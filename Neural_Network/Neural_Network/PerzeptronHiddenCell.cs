@@ -11,8 +11,7 @@ namespace Neural_Network
         public override void learn(TrainingInstance ti) {
 			setDelta(ti);
 
-			foreach (Synapse s in incomingSynapses)
-            {
+			foreach (Synapse s in incomingSynapses){
 				s.weight += -learningRate * s.voltage * delta;
             }
         }
@@ -27,22 +26,15 @@ namespace Neural_Network
 			delta = activateDifferentiated(excitation()) * sumout;
 		}
 
-        public override string ToString() {
-            StringBuilder sb = new StringBuilder();
-            for(int i=0; i<incomingSynapses.Count(); ++i){
-				sb.Append("weight " + i.ToString() + ": " + incomingSynapses[i].weight.ToString() + "\t");
-            }
-            return sb.ToString();
-        }
-
-
         protected override double activate(double sum)
         {
+            //fermi function
             return 1 / (1 + Math.Pow(Math.E, -sum));
         }
 
         protected override double activateDifferentiated(double sum)
         {
+            //differentiated fermi function
             double a = activate(sum);
             return a*(1.0-a);
         }

@@ -12,14 +12,6 @@ namespace Neural_Network {
 		}
 
 		protected abstract void construct(int capacity);
-
-		public string ToString() {
-			StringBuilder sb = new StringBuilder();
-			foreach (Neuron n in neurons) {
-				sb.Append(n.getCurrentOutputValue().ToString() + "\t");
-			}
-			return sb.ToString();
-		}
 	}
 	class InputLayer : Layer {
 		public InputLayer(int capacity)

@@ -17,40 +17,12 @@ namespace Neural_Network
             InitializeComponent();
         }
 
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Graphics g1 = pictureBox1.CreateGraphics();
-
-            int w = pictureBox1.Width;
-            int h = pictureBox1.Height;
-
-            g1.FillRectangle(new SolidBrush(Color.Green) ,new Rectangle(0, 0, w, h));
-
-        }
-
         Trainer trainer = new Trainer();
 
         private void runToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
-            trainer.createTrainingSet();
-
-
-            Graphics g1 = pictureBox1.CreateGraphics();
-
-            int w = pictureBox1.Width;
-            int h = pictureBox1.Height;
-
-            Pen p = new Pen(Color.Green, 0.01F);
-
-            g1.TranslateTransform(pictureBox1.Width / 2, pictureBox1.Height / 2);
-            g1.ScaleTransform(pictureBox1.Width / 20.0F, -pictureBox1.Height / 6.0F);
-
-            //g1.FillRectangle(new SolidBrush(Color.Blue), 0, 0, 1, 1);
-
             for (int i = 0; i < trainer.training.Count-1; ++i) {
-				g1.DrawLine(p,
+				g1.DrawLine(p1,
 					Convert.ToSingle(trainer.training[i].inputVector[0]),
 					Convert.ToSingle(trainer.training[i].expectedOutput),
 					Convert.ToSingle(trainer.training[i + 1].inputVector[0]),
@@ -58,8 +30,27 @@ namespace Neural_Network
 					);
 				//g1.DrawRectangle(p,Convert.ToSingle(trainer.training[i].inputVector[0]), Convert.ToSingle(trainer.training[i].expectedOutput), 0.001f, 0.001f);
             }
+        }
 
-            //trainer.trainPerceptron();
+        Graphics g1;
+        int w, h;
+        Pen p1, p2;
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            g1 = pictureBox1.CreateGraphics();
+
+            w = pictureBox1.Width;
+            h = pictureBox1.Height;
+
+
+            g1.TranslateTransform(pictureBox1.Width / 2, pictureBox1.Height / 2);
+            g1.ScaleTransform(pictureBox1.Width / 20.0F, -pictureBox1.Height / 6.0F);
+
+
+            p1 = new Pen(Color.Green, 0.05F); // target function
+            p2 = new Pen(Color.Black, 0.05F); // coord axis
 
         }
 
@@ -68,29 +59,16 @@ namespace Neural_Network
         private void showNetworkOutputToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<List<double>> tr = trainer.trainingResults();
-            Graphics g1 = pictureBox1.CreateGraphics();
-
-            int w = pictureBox1.Width;
-            int h = pictureBox1.Height;
             
-
+            //vary output color
             Pen p = new Pen(Color.FromArgb((255*5-3*outputCounter)%255,(outputCounter)%255,(10*outputCounter++)%255), 0.001F);
-            Pen p2 = new Pen(Color.Black, 0.05F);
-
-            g1.TranslateTransform(pictureBox1.Width / 2, pictureBox1.Height / 2);
-            g1.ScaleTransform(pictureBox1.Width / 20.0F, -pictureBox1.Height / 6.0F);
-
-			
-
-            g1.FillRectangle(new SolidBrush(Color.Green), 7, -2f, 0.1f, 0.1f);
-            g1.FillRectangle(new SolidBrush(Color.Green), -7, 2f, 0.1f, 0.1f);
-
+            
+            //axis
             g1.DrawLine(p2, -10f, 0f, 10f, 0f);
             g1.DrawLine(p2, 0f, -3f, 0f, 3f);
 
             for (int i = 0; i < tr.Count-1; ++i)
             {
-
               g1.DrawLine(p,
                     Convert.ToSingle(trainer.training[i].inputVector[0]),
                     Convert.ToSingle(tr[i][0]),

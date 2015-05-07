@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 namespace Neural_Network {
 	class BiasNeuron : Neuron {
 		public override void learn(TrainingInstance t) {
-			throw new Exception("Bias Neuron cannot learn");
-		}
-		public override void addIncomingSynapse(Synapse s) {
-			throw new Exception("Bias Neuron cannot have incoming synapses");
-		}
+            return;
+        }
 		public override void addIncomingSynapse(Synapse s, double initWeight) {
 			throw new Exception("Bias Neuron cannot have incoming synapses");
 		}

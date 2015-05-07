@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Neural_Network {
 	class Perceptron {
-
-
 		public Layer inputLayer;
 		public Layer outputLayer;
 		public List<Layer> hiddenLayers;
@@ -15,7 +10,6 @@ namespace Neural_Network {
 		private double initWeightMax;
 
 		public Perceptron(List<int> numberOfNeurons, double initWeightMin, double initWeightMax) {
-
 			inputLayer = new InputLayer(numberOfNeurons[0]);
 			hiddenLayers = new List<Layer>();
 			for (int i = 1; i < numberOfNeurons.Count - 1; ++i) {
@@ -29,14 +23,11 @@ namespace Neural_Network {
 			connectFully();
 		}
 
-
 		private void connectFully() {
+            Random rand = new Random();
 			for (int i = 0; i < hiddenLayers.Count+1; ++i) {
 				Layer current;
-                if (i < hiddenLayers.Count)
-                    current = hiddenLayers[i];
-                else
-                    current = inputLayer;
+                current = i < hiddenLayers.Count ? hiddenLayers[i] : inputLayer;
 				Layer next;
                 if(i < hiddenLayers.Count - 1)
                     next=hiddenLayers[i + 1];
@@ -51,46 +42,32 @@ namespace Neural_Network {
 						}
 						Synapse s = new Synapse(from, to);
 						from.addOutgoingSynapse(s);
-						to.addIncomingSynapse(s, Neuron.randomInitWeightGenerator(initWeightMin, initWeightMax));
+						to.addIncomingSynapse(s, rand.NextDouble()*(initWeightMax-initWeightMin)+initWeightMin);
 					}
 				}
 			}
 		}
 
-        public List<double> feedForward(TrainingInstance tr)
-        {
-            if (tr.inputVector.Count != inputLayer.neurons.Count-1) //-1 due to bias neuron
-            {
+        public List<double> feedForward(TrainingInstance tr){
+            if (tr.inputVector.Count != inputLayer.neurons.Count-1) { //-1 due to bias neuron
                 throw new Exception("input vector size does not match input layer neuron count");
             }
 
-
-            for (int i = 1; i < inputLayer.neurons.Count; ++i)
-            {
+            for (int i = 1; i < inputLayer.neurons.Count; ++i){
                 inputLayer.neurons[i].setStaticOutput(tr.inputVector[i-1]);
             }
-            for (int i = 0; i < hiddenLayers.Count; ++i)
-            {
-                for (int j = 0; j < hiddenLayers[i].neurons.Count; ++j)
-                {
+            for (int i = 0; i < hiddenLayers.Count; ++i) {
+                for (int j = 0; j < hiddenLayers[i].neurons.Count; ++j){
                     hiddenLayers[i].neurons[j].calc();
                 }
             }
-
             List<double> results = new List<double>();
 
-            for (int j = 0; j < outputLayer.neurons.Count; ++j)
-            {
+            for (int j = 0; j < outputLayer.neurons.Count; ++j) {
                 outputLayer.neurons[j].calc();
                 results.Add(outputLayer.neurons[j].getCurrentOutputValue());
             }
-
             return results;
         }
-
-
-		public string outputLayerToString() {
-			return outputLayer.ToString();
-		}
 	}
 }
