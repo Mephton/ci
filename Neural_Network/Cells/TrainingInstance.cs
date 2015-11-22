@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Neural_Network
 {
-    class TrainingInstance
+    public class TrainingInstance
     {
-        public TrainingInstance(List<double> inputVector, double expectedOutput)
+        public TrainingInstance(List<decimal> inputVector, decimal expectedOutput)
         {
             this.expectedOutput = expectedOutput;
             this.inputVector = inputVector;
         }
-        public double expectedOutput;
-        public List<double> inputVector;
+        public decimal expectedOutput;
+        public List<decimal> inputVector;
     }
 }

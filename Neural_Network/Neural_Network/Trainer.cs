@@ -12,15 +12,15 @@ namespace Neural_Network
 
 		public Trainer() {
 			List<int> numberOfNeurons = new List<int>(new int[] {1,100,1});
-			perceptron = new Perceptron(numberOfNeurons, -0.5, 0.5);
+			perceptron = new Perceptron(numberOfNeurons, -0.5m, 0.5m);
 
 			createTrainingSet();
 
 		}
 
-		private double f(double x) {
+		private decimal f(decimal x) {
 			//return Math.Cos(x);
-			return (Math.Cos(x / 3) + Math.Sin(10 / (Math.Abs(x) + 0.1)) + 0.1 * x); 
+			return (decimal)((decimal)Math.Cos((double)x / 3) + (decimal)Math.Sin(10 / (Math.Abs((double)x) + 0.1)) + 0.1m * x); 
 		}
 
         public List<TrainingInstance> training;
@@ -28,13 +28,13 @@ namespace Neural_Network
 		public void createTrainingSet() {
 			training = new List<TrainingInstance>();
 			for (int i = 0; i < 1001; ++i) {
-				training.Add(new TrainingInstance(new List<double>(new double[] { -10.0 + i * 20.0 / 1001.0 }), f(-10.0 + i * 20.0 / 1001.0)));
+				training.Add(new TrainingInstance(new List<decimal>(new decimal[] { -10.0m + i * 20.0m / 1001.0m }), f(-10.0m + i * 20.0m / 1001.0m)));
 			}
 		}
 
-        public List<List<double>> trainingResults()
+        public List<List<decimal>> trainingResults()
         {
-            List<List<double>> results = new List<List<double>>();
+            List<List<decimal>> results = new List<List<decimal>>();
 
             foreach (TrainingInstance ti in training)
             {
@@ -47,8 +47,8 @@ namespace Neural_Network
         
         public void trainOutputLayer()
         {
-			//TrainingInstance t1 = new TrainingInstance(new List<double>() { 7 }, -2);
-			//TrainingInstance t2 = new TrainingInstance(new List<double>() { -7 }, 2);
+			//TrainingInstance t1 = new TrainingInstance(new List<decimal>() { 7 }, -2);
+			//TrainingInstance t2 = new TrainingInstance(new List<decimal>() { -7 }, 2);
 
 			//perceptron.feedForward(t1);
 			//foreach (Neuron n in perceptron.outputLayer.neurons)
@@ -78,7 +78,7 @@ namespace Neural_Network
 			var permed = training.OrderBy(item => r.Next());
 
 			foreach (TrainingInstance ti in permed) {
-			//	TrainingInstance ti = new TrainingInstance(new List<double>() { -1 }, 5);
+			//	TrainingInstance ti = new TrainingInstance(new List<decimal>() { -1 }, 5);
 				perceptron.feedForward(ti);
 				
                 foreach (Neuron n in perceptron.outputLayer.neurons)
@@ -97,7 +97,7 @@ namespace Neural_Network
 		public void trainHiddenLayer() {
 
 
-			//TrainingInstance t1 = new TrainingInstance(new List<double>() { 7 }, 2);
+			//TrainingInstance t1 = new TrainingInstance(new List<decimal>() { 7 }, 2);
 			//perceptron.feedForward(t1);
 			//foreach (Neuron o in perceptron.outputLayer.neurons) { //in case of MLP not always output layer!
 			//	o.setDelta(t1);
@@ -107,7 +107,7 @@ namespace Neural_Network
 			//}
 
 
-			//TrainingInstance t2 = new TrainingInstance(new List<double>() { -7 }, 0);
+			//TrainingInstance t2 = new TrainingInstance(new List<decimal>() { -7 }, 0);
 			//perceptron.feedForward(t2);
 			//foreach (Neuron o in perceptron.outputLayer.neurons) { //in case of MLP not always output layer!
 			//	o.setDelta(t2);
@@ -130,7 +130,7 @@ namespace Neural_Network
 
 
 
-			//TrainingInstance tj = new TrainingInstance(new List<double>() { -1 }, 5);
+			//TrainingInstance tj = new TrainingInstance(new List<decimal>() { -1 }, 5);
 			//for (int i = 1; i < perceptron.hiddenLayers[0].neurons.Count; ++i) {
 			//	perceptron.hiddenLayers[0].neurons[i].learn(tj);
 			//}
@@ -149,14 +149,14 @@ namespace Neural_Network
 		}
 
 
-		public double meanSquareError() {
+		public decimal meanSquareError() {
 
-			double d=0.0;
+			decimal d=0.0m;
 			
 			foreach (TrainingInstance ti in training) {
 				perceptron.feedForward(ti);
 
-				d+=Math.Pow(perceptron.outputLayer.neurons[0].getCurrentOutputValue()-ti.expectedOutput, 2.0);
+				d+=(decimal)Math.Pow((double)(perceptron.outputLayer.neurons[0].getCurrentOutputValue()-ti.expectedOutput), 2.0);
 			}
 
 			d /= (2*training.Count);
@@ -168,16 +168,16 @@ namespace Neural_Network
 			throw new NotImplementedException();
 
 
-            List<double> a = new List<double>();
-            a.Add(-4.0);
-            List<double> b = new List<double>();
-            b.Add(-3.0);
-            List<double> c = new List<double>();
-            c.Add(-1.0);
-            List<double> d = new List<double>();
-            d.Add(1.0);
-            List<double> e = new List<double>();
-            e.Add(2.0);
+            List<decimal> a = new List<decimal>();
+            a.Add(-4.0m);
+            List<decimal> b = new List<decimal>();
+            b.Add(-3.0m);
+            List<decimal> c = new List<decimal>();
+            c.Add(-1.0m);
+            List<decimal> d = new List<decimal>();
+            d.Add(1.0m);
+            List<decimal> e = new List<decimal>();
+            e.Add(2.0m);
 
             List<TrainingInstance> training = new List<TrainingInstance>();
             training.Add(new TrainingInstance(a, 1));

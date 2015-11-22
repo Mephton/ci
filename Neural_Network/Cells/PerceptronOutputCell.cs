@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Neural_Network {
-	class PerceptronOutputCell : Neuron {
+	public class PerceptronOutputCell : Neuron {
 
 		public override void learn(TrainingInstance t) {
 			setDelta(t);
@@ -20,12 +20,12 @@ namespace Neural_Network {
 			delta = activateDifferentiated(excitation()) * (currentOutputVoltage - t.expectedOutput);
 		}
 
-        protected override double activate(double sum)
+        protected override decimal activate(decimal sum)
         {
             return sum;
         }
 
-        protected override double activateDifferentiated(double sum)
+        protected override decimal activateDifferentiated(decimal sum)
         {
             return 1;
         }

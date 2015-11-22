@@ -1,0 +1,10 @@
+C:\Users\Mirko\Documents\ci\Neural_Network\SOM\bin\Debug\SOM.exe.config
+C:\Users\Mirko\Documents\ci\Neural_Network\SOM\bin\Debug\SOM.exe
+C:\Users\Mirko\Documents\ci\Neural_Network\SOM\bin\Debug\SOM.pdb
+C:\Users\Mirko\Documents\ci\Neural_Network\SOM\obj\Debug\SOM.csprojResolveAssemblyReference.cache
+C:\Users\Mirko\Documents\ci\Neural_Network\SOM\obj\Debug\SOM.exe
+C:\Users\Mirko\Documents\ci\Neural_Network\SOM\obj\Debug\SOM.pdb
+C:\Users\Mirko\Documents\ci\Neural_Network\SOM\bin\Debug\Cells.dll
+C:\Users\Mirko\Documents\ci\Neural_Network\SOM\bin\Debug\Cells.pdb
+C:\Users\Mirko\Documents\ci\Neural_Network\SOM\obj\Debug\SOM.Visualizer.resources
+C:\Users\Mirko\Documents\ci\Neural_Network\SOM\obj\Debug\SOM.csproj.GenerateResource.Cache

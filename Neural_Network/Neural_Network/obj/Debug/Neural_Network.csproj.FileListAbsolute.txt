@@ -15,3 +15,5 @@ C:\Users\mirko_000\Documents\ci\Neural_Network\Neural_Network\obj\Debug\Neural_N
 C:\Users\mirko_000\Documents\ci\Neural_Network\Neural_Network\obj\Debug\Neural_Network.csproj.GenerateResource.Cache
 C:\Users\Mirko\Documents\ci\Neural_Network\Neural_Network\obj\Debug\Neural_Network.Visualizer.resources
 C:\Users\Mirko\Documents\ci\Neural_Network\Neural_Network\obj\Debug\Neural_Network.csproj.GenerateResource.Cache
+C:\Users\Mirko\Documents\ci\Neural_Network\Neural_Network\bin\Debug\Cells.dll
+C:\Users\Mirko\Documents\ci\Neural_Network\Neural_Network\bin\Debug\Cells.pdb

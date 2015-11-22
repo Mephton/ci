@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neural_Network", "Neural_Network\Neural_Network.csproj", "{7ED0C683-F651-471C-8789-A2095F0F85F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOM", "SOM\SOM.csproj", "{FEFEF935-0DEF-4262-A410-45240BD904A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cells", "Cells\Cells.csproj", "{69D10FD6-4600-4592-9C45-CED789193821}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{7ED0C683-F651-471C-8789-A2095F0F85F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ED0C683-F651-471C-8789-A2095F0F85F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ED0C683-F651-471C-8789-A2095F0F85F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEFEF935-0DEF-4262-A410-45240BD904A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEFEF935-0DEF-4262-A410-45240BD904A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEFEF935-0DEF-4262-A410-45240BD904A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEFEF935-0DEF-4262-A410-45240BD904A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69D10FD6-4600-4592-9C45-CED789193821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69D10FD6-4600-4592-9C45-CED789193821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69D10FD6-4600-4592-9C45-CED789193821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69D10FD6-4600-4592-9C45-CED789193821}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,5 @@
+C:\Users\Mirko\Documents\ci\Neural_Network\Cells\obj\Debug\Cells.csprojResolveAssemblyReference.cache
+C:\Users\Mirko\Documents\ci\Neural_Network\Cells\bin\Debug\Cells.dll
+C:\Users\Mirko\Documents\ci\Neural_Network\Cells\bin\Debug\Cells.pdb
+C:\Users\Mirko\Documents\ci\Neural_Network\Cells\obj\Debug\Cells.dll
+C:\Users\Mirko\Documents\ci\Neural_Network\Cells\obj\Debug\Cells.pdb

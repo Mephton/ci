@@ -67,7 +67,7 @@ namespace Neural_Network
 
         private void showNetworkOutputToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<List<double>> tr = trainer.trainingResults();
+            List<List<decimal>> tr = trainer.trainingResults();
             Graphics g1 = pictureBox1.CreateGraphics();
 
             int w = pictureBox1.Width;

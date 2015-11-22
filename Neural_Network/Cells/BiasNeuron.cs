@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Neural_Network {
-	class BiasNeuron : Neuron {
+	public class BiasNeuron : Neuron {
 		public override void learn(TrainingInstance t) {
 			throw new Exception("Bias Neuron cannot learn");
 		}
 		public override void addIncomingSynapse(Synapse s) {
 			throw new Exception("Bias Neuron cannot have incoming synapses");
 		}
-		public override void addIncomingSynapse(Synapse s, double initWeight) {
+		public override void addIncomingSynapse(Synapse s, decimal initWeight) {
 			throw new Exception("Bias Neuron cannot have incoming synapses");
 		}
 
@@ -27,7 +27,7 @@ namespace Neural_Network {
 			}
 			currentOutputVoltage = 1;
 		}
-		public override void setStaticOutput(double v) {
+		public override void setStaticOutput(decimal v) {
 			throw new NotImplementedException();
 		}
 	}

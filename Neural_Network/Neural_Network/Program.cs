@@ -10,6 +10,8 @@ namespace Neural_Network
     {
         static void Main(string[] args)
         {
+			DynamicNetwork dn = new DynamicNetwork();
+
             Visualizer vs = new Visualizer();
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Neural_Network
 {
-    class PerzeptronHiddenCell : Neuron
+    public class PerzeptronHiddenCell : Neuron
     {
         public override void learn(TrainingInstance ti) {
 			setDelta(ti);
@@ -18,7 +18,7 @@ namespace Neural_Network
         }
 
 		public override void setDelta(TrainingInstance t) {
-			double sumout = 0.0;
+			decimal sumout = 0.0m;
 			foreach (Synapse s in outgoingSynapses) {
 				s.to.calc();
 				s.to.setDelta(t);
@@ -36,15 +36,15 @@ namespace Neural_Network
         }
 
 
-        protected override double activate(double sum)
+        protected override decimal activate(decimal sum)
         {
-            return 1 / (1 + Math.Pow(Math.E, -sum));
+            return (decimal)(1 / (1 + Math.Pow(Math.E, (double)-sum)));
         }
 
-        protected override double activateDifferentiated(double sum)
+        protected override decimal activateDifferentiated(decimal sum)
         {
-            double a = activate(sum);
-            return a*(1.0-a);
+            decimal a = activate(sum);
+            return a*(1.0m-a);
         }
     }
 }

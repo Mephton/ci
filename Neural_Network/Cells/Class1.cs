@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Neural_Network
+namespace Cells
 {
-    abstract class Cell
+    public class Class1
     {
     }
 }

@@ -6,14 +6,7 @@ using System.Threading.Tasks;
 
 namespace Neural_Network
 {
-    class Vector
+    public abstract class Cell
     {
-        List<decimal> _values = new List<decimal>();
-        public Vector(decimal v)
-        {
-            _values.Add(v);
-        }
-
-
     }
 }

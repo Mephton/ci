@@ -11,10 +11,10 @@ namespace Neural_Network {
 		public Layer inputLayer;
 		public Layer outputLayer;
 		public List<Layer> hiddenLayers;
-		private double initWeightMin;
-		private double initWeightMax;
+		private decimal initWeightMin;
+		private decimal initWeightMax;
 
-		public Perceptron(List<int> numberOfNeurons, double initWeightMin, double initWeightMax) {
+		public Perceptron(List<int> numberOfNeurons, decimal initWeightMin, decimal initWeightMax) {
 
 			inputLayer = new InputLayer(numberOfNeurons[0]);
 			hiddenLayers = new List<Layer>();
@@ -57,7 +57,7 @@ namespace Neural_Network {
 			}
 		}
 
-        public List<double> feedForward(TrainingInstance tr)
+        public List<decimal> feedForward(TrainingInstance tr)
         {
             if (tr.inputVector.Count != inputLayer.neurons.Count-1) //-1 due to bias neuron
             {
@@ -77,7 +77,7 @@ namespace Neural_Network {
                 }
             }
 
-            List<double> results = new List<double>();
+            List<decimal> results = new List<decimal>();
 
             for (int j = 0; j < outputLayer.neurons.Count; ++j)
             {
